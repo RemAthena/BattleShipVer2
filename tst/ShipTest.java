@@ -30,4 +30,13 @@ public class ShipTest {
         assertEquals(COL_LENGTH, ship.getCol());
         assertEquals(ROW_LENGTH, ship.getRow());
     }
+
+    @Test
+    public void testGetLength() {
+        final int SHIP_LENGTH = 4;
+        Ship ship = new Ship(SHIP_LENGTH);
+
+        assertEquals(SHIP_LENGTH, ship.getLength());
+    }
+
 }
