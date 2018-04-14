@@ -52,7 +52,7 @@ public class Ship {
     }
 
     // To judge whether the ship is sunken.
-    public boolean isSunken(){
+    public boolean isSunk(){
         if(remainingPart.isEmpty()){
             System.out.println("Congratulations! You have sunk the ship!");
             return true;
