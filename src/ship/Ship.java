@@ -1,31 +1,22 @@
 package ship;
-import java.util.ArrayList;
 
-public class Ship {
-    private final int OCEAN_SIZE = 10;
-    private boolean horizontal;
-    private int length, row, col;
-    private ArrayList<Integer> remainingPart;
-
-    // Constructor
-    public Ship(int newLength){
-        length = newLength;
-        horizontal = Math.random() < 0.5 ? true : false;
-        row = horizontal ? (int)(Math.random()*(OCEAN_SIZE-1)) : (int)(Math.random()*(OCEAN_SIZE-length));
-        col = horizontal ? (int)(Math.random()*(OCEAN_SIZE-length)) : (int)(Math.random()*(OCEAN_SIZE-1));
-        remainingPart = new ArrayList<Integer>();
-        for(int i = 0; i < length; i++) {
-            remainingPart.add(i);
-        }
-    }
+public abstract class Ship {
+    protected boolean horizontal;
+    protected int length, row, col;
+    protected boolean[] wasHit;
 
     // Setter
+    public void setHorizontal(boolean newHorizontal){
+        horizontal = newHorizontal;
+    }
     public void setRow(int newRow){
         row = newRow;
     }
     public void setCol(int newCol){
         col = newCol;
     }
+    // To set a part of the ship to be hit.
+    public abstract void setWasHit(int index, boolean newWasHit);
 
     // Getter
     public boolean isHorizontal() {
@@ -41,24 +32,8 @@ public class Ship {
         return col;
     }
 
-    // Given the coordinates, find out which part is hit
-    public void hit(int x, int y){
-        if(horizontal){
-            remainingPart.remove(y-col);
-        }
-        else{
-            remainingPart.remove(x-row);
-        }
-    }
-
     // To judge whether the ship is sunken.
-    public boolean isSunk(){
-        if(remainingPart.isEmpty()){
-            System.out.println("Congratulations! You have sunk the ship!");
-            return true;
-        }
-        return false;
-    }
+    public abstract boolean isSunk();
 
     @Override
     public String toString() {
