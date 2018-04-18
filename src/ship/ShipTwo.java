@@ -18,4 +18,8 @@ public class ShipTwo extends Ship {
     public boolean isSunk(){
         return wasHit[0] & wasHit[1];
     }
+
+    public boolean isShip(){
+        return true;
+    }
 }

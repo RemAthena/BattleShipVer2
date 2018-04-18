@@ -18,4 +18,8 @@ public class ShipThree extends Ship {
     public boolean isSunk(){
         return wasHit[0] & wasHit[1] & wasHit[2];
     }
+
+    public boolean isShip(){
+        return true;
+    }
 }

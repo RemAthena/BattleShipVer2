@@ -2,7 +2,9 @@ package ship;
 
 public abstract class Ship {
     protected boolean horizontal;
-    protected int length, row, col;
+    protected int length;
+    protected int row;
+    protected int col;
     protected boolean[] wasHit;
 
     // Setter
@@ -31,13 +33,18 @@ public abstract class Ship {
     public int getCol(){
         return col;
     }
+    public boolean[] getWasHit() {
+        return wasHit;
+    }
 
     // To judge whether the ship is sunken.
     public abstract boolean isSunk();
 
-    @Override
-    public String toString() {
-        // TODO
-        return "";
-    }
+    // To judge whether it is a ship or empty ocean
+    public abstract boolean isShip();
+
+//    @Override
+//    public String toString() {
+//        return "";
+//    }
 }

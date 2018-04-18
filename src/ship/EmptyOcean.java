@@ -1,11 +1,14 @@
 package ship;
 
-public class ShipFour extends Ship {
-    private final int SIZE = 4;
+public class EmptyOcean extends Ship{
+    private final int SIZE = 1;
 
     // Constructor
-    public ShipFour(){
+    public EmptyOcean(int x, int y){
+        horizontal = true;
         length = SIZE;
+        row = x;
+        col = y;
         wasHit = new boolean[SIZE];
     }
 
@@ -16,10 +19,10 @@ public class ShipFour extends Ship {
 
     // Getter
     public boolean isSunk(){
-        return wasHit[0] & wasHit[1] & wasHit[2] & wasHit[3];
+        return wasHit[0];
     }
 
     public boolean isShip(){
-        return true;
+        return false;
     }
 }

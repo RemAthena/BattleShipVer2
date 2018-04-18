@@ -4,7 +4,7 @@ public class ShipOne extends Ship {
     private final int SIZE = 1;
 
     // Constructor
-    public  ShipOne() {
+    public ShipOne() {
         length = SIZE;
         wasHit = new boolean[SIZE];
     }
@@ -17,5 +17,9 @@ public class ShipOne extends Ship {
     // Getter
     public boolean isSunk(){
         return wasHit[0];
+    }
+
+    public boolean isShip(){
+        return true;
     }
 }
