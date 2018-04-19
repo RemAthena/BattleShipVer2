@@ -1,11 +1,12 @@
 import ship.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ocean {
     private final int NUM_ROWS = 10;
     private final int NUM_COLS = 10;
     private Ship[][] ships;
-    private ArrayList<Ship> allShips;
+    private List<Ship> allShips;
 
     /* Constructor */
     public Ocean(){
@@ -49,7 +50,7 @@ public class Ocean {
     /**
      * Generate a ShipFour object and place it into the ocean
      */
-    private void generateShipFour(){
+    private void generateShipFour() {
         Ship newShip = new ShipFour();
         setAttrAndPlaceShip(newShip);
     }
@@ -116,7 +117,7 @@ public class Ocean {
      * @return  the direction of the ship
      */
     private boolean generateRandomDirection(){
-        return Math.random()<0.5 ? true : false;
+        return Math.random() < 0.5 ? true : false;
     }
 
     /** Generate a random row number
@@ -194,22 +195,23 @@ public class Ocean {
     }
 
     /**
-     *  Fire on the specific point
+     * Fire on the specific point
      * @param row   the number of Row
      * @param col   the number of Column
      * @return  whether it hits or misses
      *          0 for miss
      *          1 for hit
      *          2 for you have already fire on this point
+     *          enum {}
      */
-    public int fire(int row, int col){
+    public int fire(int row, int col) {
         int rowDiff = row - ships[row][col].getRow();
         int colDiff = col - ships[row][col].getCol();
         if(!ships[row][col].isShip() && !ships[row][col].getWasHit()[rowDiff+colDiff]){
             ships[row][col].setWasHit(0, true);
             return 0;
         }
-        else if (ships[row][col].getWasHit()[rowDiff+colDiff]){
+        else if(ships[row][col].getWasHit()[rowDiff+colDiff]) {
             return 2;
         }
         else{
@@ -256,12 +258,13 @@ public class Ocean {
         for(int i = 0; i < NUM_ROWS; i++){
             System.out.print(i+1 + "\t");   //print column number
             for(int j = 0; j < NUM_COLS; j++){
-                if(ships[i][j].isShip()){
-                    System.out.print("1 "); //if there is a ship, print 1
-                }
-                else{
-                    System.out.print("0 "); //if there is empty ocean, print 0
-                }
+//                System.out.println(ships[i][j]);
+//                if(ships[i][j].isShip()){
+//                    System.out.print("1 "); //if there is a ship, print 1
+//                }
+//                else{
+//                    System.out.print("0 "); //if there is empty ocean, print 0
+//                }
             }
             System.out.println();
         }

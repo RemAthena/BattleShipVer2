@@ -1,18 +1,18 @@
 package ship;
 
 public abstract class Ship {
-    protected boolean horizontal;
-    protected int length;
-    protected int row;
-    protected int col;
-    protected boolean[] wasHit;
+    boolean horizontal;
+    int length;
+    int row;
+    int col;
+    boolean[] wasHit;
 
     // Setter
     public void setHorizontal(boolean newHorizontal){
         horizontal = newHorizontal;
     }
-    public void setRow(int newRow){
-        row = newRow;
+    public void setRow(int row){
+        this.row = row;
     }
     public void setCol(int newCol){
         col = newCol;

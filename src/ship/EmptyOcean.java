@@ -5,11 +5,11 @@ public class EmptyOcean extends Ship{
 
     // Constructor
     public EmptyOcean(int x, int y){
-        horizontal = true;
-        length = SIZE;
-        row = x;
-        col = y;
-        wasHit = new boolean[SIZE];
+        this.horizontal = true;
+        this.length = SIZE;
+        this.row = x;
+        this.col = y;
+        this.wasHit = new boolean[SIZE];
     }
 
     // Setter
