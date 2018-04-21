@@ -2,11 +2,18 @@ import ship.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The result of fire. It is for return value.
+ */
+enum fireResult{
+    MISS, HIT, ALREADY_FIRED
+}
+
 public class Ocean {
     private final int NUM_ROWS = 10;
     private final int NUM_COLS = 10;
     private Ship[][] ships;
-    private List<Ship> allShips;
+    private List<Ship> allShips;    //Use List instead of ArrayList
 
     /* Constructor */
     public Ocean(){
@@ -19,17 +26,6 @@ public class Ocean {
     public Ship[][] getShips(){
         return ships;
     }
-//    public ArrayList<Ship> getAllShips(){
-//        return allShips;
-//    }
-//
-//    // Setter
-//    public void setShips(Ship newShip, int row, int col){
-//        ships[row][col] = newShip;
-//    }
-//    public void setAllShips(Ship newShip){
-//        allShips.add(newShip);
-//    }
 
     /**
      * Place all ships randomly into the ocean.
@@ -166,14 +162,14 @@ public class Ocean {
     private boolean isNoShipAround(int row, int col){
         for(int i = row-1; i <= row+1; i++){
             if(i < 0 || i >= NUM_ROWS){
-                continue;
+                continue;   //if it is in the first or last row
             }
             for(int j = col-1; j <= col+1; j++){
                 if(j < 0 || j >= NUM_COLS){
-                    continue;
+                    continue;   //if it is in the first or last column
                 }
                 if(ships[i][j].isShip()){
-                    return false;
+                    return false;   //if there is a ship around, return not valid
                 }
             }
         }
@@ -204,19 +200,19 @@ public class Ocean {
      *          2 for you have already fire on this point
      *          enum {}
      */
-    public int fire(int row, int col) {
+    public fireResult fire(int row, int col) {
         int rowDiff = row - ships[row][col].getRow();
         int colDiff = col - ships[row][col].getCol();
         if(!ships[row][col].isShip() && !ships[row][col].getWasHit()[rowDiff+colDiff]){
             ships[row][col].setWasHit(0, true);
-            return 0;
+            return fireResult.MISS;
         }
         else if(ships[row][col].getWasHit()[rowDiff+colDiff]) {
-            return 2;
+            return fireResult.ALREADY_FIRED;
         }
         else{
             ships[row][col].setWasHit(rowDiff+colDiff,true);
-            return 1;
+            return fireResult.HIT;
         }
     }
 
@@ -237,17 +233,7 @@ public class Ocean {
         for(int i = 0; i < NUM_ROWS; i++){
             System.out.print(i+1 + "\t");
             for(int j = 0; j < NUM_COLS; j++){
-                int rowDiff = i - ships[i][j].getRow();
-                int colDiff = j - ships[i][j].getCol();
-                if(ships[i][j].isShip() && ships[i][j].getWasHit()[rowDiff+colDiff]){
-                    System.out.print("X ");
-                }
-                else if(!ships[i][j].isShip() && ships[i][j].getWasHit()[rowDiff+colDiff]){
-                    System.out.print("* ");
-                }
-                else{
-                    System.out.print("O ");
-                }
+                System.out.print(ships[i][j].toString(i, j));
             }
             System.out.println();
         }
@@ -258,13 +244,7 @@ public class Ocean {
         for(int i = 0; i < NUM_ROWS; i++){
             System.out.print(i+1 + "\t");   //print column number
             for(int j = 0; j < NUM_COLS; j++){
-//                System.out.println(ships[i][j]);
-//                if(ships[i][j].isShip()){
-//                    System.out.print("1 "); //if there is a ship, print 1
-//                }
-//                else{
-//                    System.out.print("0 "); //if there is empty ocean, print 0
-//                }
+                System.out.print(ships[i][j].toString());
             }
             System.out.println();
         }

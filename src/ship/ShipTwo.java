@@ -1,12 +1,11 @@
 package ship;
 
 public class ShipTwo extends Ship {
-    private final int SIZE = 2;
+    private static final int SIZE = 2;
 
     // Constructor
     public ShipTwo(){
-        length = SIZE;
-        wasHit = new boolean[SIZE];
+        super(SIZE);
     }
 
     // Setter
@@ -16,7 +15,11 @@ public class ShipTwo extends Ship {
 
     // Getter
     public boolean isSunk(){
-        return wasHit[0] & wasHit[1];
+        boolean isSunken = true;
+        for(int i = 0; i < length; i++){
+            isSunken &= wasHit[i];
+        }
+        return isSunken;
     }
 
     public boolean isShip(){

@@ -1,15 +1,14 @@
 package ship;
 
 public class EmptyOcean extends Ship{
-    private final int SIZE = 1;
+    private static final int SIZE = 1;
 
     // Constructor
     public EmptyOcean(int x, int y){
+        super(SIZE);
         this.horizontal = true;
-        this.length = SIZE;
         this.row = x;
         this.col = y;
-        this.wasHit = new boolean[SIZE];
     }
 
     // Setter
@@ -19,7 +18,11 @@ public class EmptyOcean extends Ship{
 
     // Getter
     public boolean isSunk(){
-        return wasHit[0];
+        boolean isSunken = true;
+        for(int i = 0; i < length; i++){
+            isSunken &= wasHit[i];
+        }
+        return isSunken;
     }
 
     public boolean isShip(){
